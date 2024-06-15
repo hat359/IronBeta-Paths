@@ -4,6 +4,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 export interface ICourse {
   courseId: mongoose.Types.ObjectId;
   grade: string; // Possible values: "9th", "10th", etc.
+  courseCategory:string
 }
 
 // Define the main interface

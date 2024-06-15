@@ -64,9 +64,9 @@ export const addPath = async (req: Request, res: Response) => {
 export const addCourseToPath = async (req: Request, res: Response): Promise<void> => {
   try {
     const pathId = req.params.id; // Assuming 'id' is the parameter for course _id
-    const { courseId, grade } = req.body; // Assuming request body contains 'text' and 'user' for the comment
+    const { courseId, grade, courseCategory} = req.body; // Assuming request body contains 'text' and 'user' for the comment
 
-    // Find the course by its _id
+    // Find the path by its _id
     const path = await Path.findById(pathId);
 
     if (!path) {
@@ -74,8 +74,7 @@ export const addCourseToPath = async (req: Request, res: Response): Promise<void
       return;
     }
 
-    // Add the new comment to the course's comments array
-    path.courses.push({ courseId, grade });
+    path.courses.push({ courseId, grade, courseCategory});
     await path.save();
 
     res.status(201).json(path); // Return the updated course object
